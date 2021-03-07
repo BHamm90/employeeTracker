@@ -1,0 +1,32 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "This app allows a company to manage the record keeping system for employees. It does this by allowing a user to add, remove and update employee or company info.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BHamm90/employeeTracker.git"
+  },
+  "keywords": [
+    "mysql",
+    "inquirer",
+    "chalk",
+    "console",
+    "table"
+  ],
+  "author": "Brian Hamm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BHamm90/employeeTracker/issues"
+  },
+  "homepage": "https://github.com/BHamm90/employeeTracker#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "console.table": "^0.10.0",
+    "inquirer": "^8.0.0",
+    "mysql": "^2.18.1"
+  }
+}
