@@ -1,4 +1,3 @@
-DROP DATABASE IF EXISTS employee_db;
 CREATE DATABASE employee_db;
 
 USE employee_db;
@@ -29,3 +28,4 @@ CREATE TABLE employee (
   FOREIGN KEY (roleId) REFERENCES role(id) ON DELETE CASCADE,
   FOREIGN KEY (managerId) REFERENCES employee(id) ON DELETE SET NULL
 );
+
