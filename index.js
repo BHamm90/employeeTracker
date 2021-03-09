@@ -149,7 +149,7 @@ const viewManagedEmployees = () => {
 }
 
 const addEmployee = () => {
-    const addEmp = 'SELECT * FROM role; SELECT CONCAT (e.firstName," ",e.lastName) AS fullName FROM employee e'
+    const addEmp = 'SELECT * FROM employee'
     connection.query(addEmp, (err, results) => {
         if (err) throw err;
         console.log(err);
@@ -187,7 +187,7 @@ const addEmployee = () => {
 
             }
         ]).then((answer) => {
-            connection.query( `INSERT INTO employee(firstName, lastName, roleId, managerId) VALUES(?, ?, (SELECT id FROM role WHERE title = ? ), (SELECT id FROM (SELECT id FROM employee WHERE CONCAT(firstName," ",lastName) = ? ) AS tmptable))`, [answer.firstName, answer.lastName, answer.role, answer.manager])
+            connection.query( `INSERT INTO employee(firstName, lastName, roleId, managerId) VALUES(?, ?, (SELECT roleId FROM role WHERE title = ? ), (SELECT id FROM employee WHERE CONCAT(firstName," ",lastName) = ? )`, [answer.firstName, answer.lastName, answer.role, answer.manager])
             userOptions();
         })
     })
@@ -215,7 +215,7 @@ const removeEmployee = () => {
 }
 
 const updateRole = () => {
-    const updatedRole = 'SELECT CONCAT (firstName," ",lastName) AS fullName FROM employee; SELECT title FROM role';
+    const updatedRole = '';
     connection.query(updatedRole, (err, results) => {
         if (err) throw err;
 
@@ -238,7 +238,7 @@ const updateRole = () => {
                 }
             }
         ]).then((answer) => {
-            connection.query(`UPDATE employee SET roleId = (SELECT id FROM role WHERE title = ? ) WHERE id = (SELECT id FROM(SELECT id FROM employee WHERE CONCAT(firstName," ",lastName) = ?) AS tmptable)`, [answer.employee, answer.roleChange], (err, results) => {
+            connection.query('', [answer.employee, answer.roleChange], (err, results) => {
                 if (err) throw err;
                 userOptions();
             })
@@ -262,7 +262,7 @@ const allRoles = () => {
 }
 
 const addRole = () => {
-    const addRole = `SELECT * FROM roles; SELECT * FROM departments`
+    const addRole = `SELECT * FROM role; SELECT * FROM department`
     connection.query(addRole, (err, results) => {
         if (err) throw err;
 
@@ -336,7 +336,7 @@ const allDepartments = () => {
 }
 
 const addDepartments = () => {
-    const addDepart = `SELECT name AS "Departments" FROM department`;
+    const addDepart = `SELECT name FROM department`;
     connection.query(addDepart, (err, results) => {
         if (err) throw err;
 
